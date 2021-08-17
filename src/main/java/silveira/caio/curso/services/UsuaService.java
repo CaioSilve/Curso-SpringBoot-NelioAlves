@@ -1,11 +1,12 @@
-package silveira.caio.curso.service;
+package silveira.caio.curso.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import silveira.caio.curso.model.Usuario;
-import silveira.caio.curso.repository.UsuaRepository;
+
+import silveira.caio.curso.entities.Usuario;
+import silveira.caio.curso.repositories.UsuaRepository;
 
 
 @Service

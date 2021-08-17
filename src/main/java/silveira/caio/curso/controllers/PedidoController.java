@@ -1,4 +1,4 @@
-package silveira.caio.curso.controller;
+package silveira.caio.curso.controllers;
 
 import java.util.List;
 
@@ -9,23 +9,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import silveira.caio.curso.model.Usuario;
-import silveira.caio.curso.service.UsuaService;
+import silveira.caio.curso.entities.Pedido;
+import silveira.caio.curso.services.PedidoService;
 
 @RestController
-@RequestMapping("/usuarios")
-public class UsuaController {
+@RequestMapping("/pedidos")
+public class PedidoController {
 
 	@Autowired
-	private UsuaService serv;
+	private PedidoService serv;
 	
 	@GetMapping()
-	public ResponseEntity<List<Usuario>> findAll(){
+	public ResponseEntity<List<Pedido>> findAll(){
 		return ResponseEntity.ok(serv.findAll());
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Usuario> findById(@PathVariable Long id){
+	public ResponseEntity<Pedido> findById(@PathVariable Long id){
 		return ResponseEntity.ok(serv.findById(id));
 	}
 	
