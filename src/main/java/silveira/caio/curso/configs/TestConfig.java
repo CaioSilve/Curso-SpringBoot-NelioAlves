@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import silveira.caio.curso.entities.Categoria;
 import silveira.caio.curso.entities.Pedido;
+import silveira.caio.curso.entities.Produto;
 import silveira.caio.curso.entities.Usuario;
 import silveira.caio.curso.entities.enums.PedidoStatus;
 import silveira.caio.curso.repositories.CateRepository;
 import silveira.caio.curso.repositories.PedidoRepository;
+import silveira.caio.curso.repositories.ProdRepository;
 import silveira.caio.curso.repositories.UsuaRepository;
 
 @Configuration
@@ -28,6 +30,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private CateRepository cateRepo;
+	
+	@Autowired
+	private ProdRepository prodRepo;
 	
 	
 	@Override
@@ -48,6 +53,23 @@ public class TestConfig implements CommandLineRunner {
 		Categoria cat3 = new Categoria("Computadores"); 
 		
 		cateRepo.saveAll(Arrays.asList(cat1,cat2,cat3));
+		
+		Produto p1 = new Produto("The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, ""); 
+		Produto p2 = new Produto("Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, ""); 
+		Produto p3 = new Produto("Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, ""); 
+		Produto p4 = new Produto("PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, ""); 
+		Produto p5 = new Produto("Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+		
+		prodRepo.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
+		
+		p1.getCategorias().add(cat2);
+		p2.getCategorias().add(cat1);
+		p2.getCategorias().add(cat3);
+		p3.getCategorias().add(cat3);
+		p4.getCategorias().add(cat3);
+		p5.getCategorias().add(cat2);
+		
+		prodRepo.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
 		
 
 		

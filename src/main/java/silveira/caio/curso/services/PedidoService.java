@@ -23,4 +23,8 @@ public class PedidoService {
 	public Pedido findById(Long id) {
 		return repo.findById(id).get();
 	}
+	
+	public Pedido save(Pedido pedido) {
+		return repo.save(pedido);
+	}
 }
