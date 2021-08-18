@@ -8,9 +8,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import silveira.caio.curso.entities.Categoria;
 import silveira.caio.curso.entities.Pedido;
 import silveira.caio.curso.entities.Usuario;
 import silveira.caio.curso.entities.enums.PedidoStatus;
+import silveira.caio.curso.repositories.CateRepository;
 import silveira.caio.curso.repositories.PedidoRepository;
 import silveira.caio.curso.repositories.UsuaRepository;
 
@@ -23,6 +25,9 @@ public class TestConfig implements CommandLineRunner {
 
 	@Autowired
 	private PedidoRepository pediRepo;
+	
+	@Autowired
+	private CateRepository cateRepo;
 	
 	
 	@Override
@@ -37,6 +42,13 @@ public class TestConfig implements CommandLineRunner {
 		Pedido o3 = new Pedido(Instant.parse("2019-07-22T15:21:22Z"), PedidoStatus.AGUARDANDO_PAGAMENTO, u1); 
 		
 		pediRepo.saveAll(Arrays.asList(o1, o2, o3));
+		
+		Categoria cat1 = new Categoria("Eletrônicos"); 
+		Categoria cat2 = new Categoria("Livros"); 
+		Categoria cat3 = new Categoria("Computadores"); 
+		
+		cateRepo.saveAll(Arrays.asList(cat1,cat2,cat3));
+		
 
 		
 	}
