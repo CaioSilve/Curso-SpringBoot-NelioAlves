@@ -2,6 +2,8 @@ package silveira.caio.curso.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -24,8 +27,10 @@ public class Pedido implements Serializable{
 	private Long id;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant hora;
-	
 	private Integer status;
+	
+	@OneToMany(mappedBy = "id.pedido")
+	private Set<ItemPedido> items = new HashSet<>();
 	
 	@ManyToOne
 	@JoinColumn(name = "codi_clie")
@@ -70,6 +75,10 @@ public class Pedido implements Serializable{
 
 	public void setClie(Usuario clie) {
 		this.clie = clie;
+	}
+	
+	public Set<ItemPedido> getItems(){
+		return items;
 	}
 
 	

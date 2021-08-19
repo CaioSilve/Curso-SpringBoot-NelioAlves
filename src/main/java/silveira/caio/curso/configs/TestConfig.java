@@ -9,11 +9,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import silveira.caio.curso.entities.Categoria;
+import silveira.caio.curso.entities.ItemPedido;
 import silveira.caio.curso.entities.Pedido;
 import silveira.caio.curso.entities.Produto;
 import silveira.caio.curso.entities.Usuario;
 import silveira.caio.curso.entities.enums.PedidoStatus;
 import silveira.caio.curso.repositories.CateRepository;
+import silveira.caio.curso.repositories.ItemPedidoRepository;
 import silveira.caio.curso.repositories.PedidoRepository;
 import silveira.caio.curso.repositories.ProdRepository;
 import silveira.caio.curso.repositories.UsuaRepository;
@@ -33,6 +35,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private ProdRepository prodRepo;
+	
+	@Autowired
+	private ItemPedidoRepository itemPediRepo;
 	
 	
 	@Override
@@ -70,6 +75,13 @@ public class TestConfig implements CommandLineRunner {
 		p5.getCategorias().add(cat2);
 		
 		prodRepo.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
+		
+		ItemPedido ip1 = new ItemPedido(o1, p1, 2, p1.getPreco());
+		ItemPedido ip2 = new ItemPedido(o1, p3, 1, p3.getPreco());
+		ItemPedido ip3 = new ItemPedido(o2, p3, 2, p3.getPreco());
+		ItemPedido ip4 = new ItemPedido(o3, p5, 2, p5.getPreco());
+		
+		itemPediRepo.saveAll(Arrays.asList(ip1,ip2,ip3,ip4));
 		
 
 		
