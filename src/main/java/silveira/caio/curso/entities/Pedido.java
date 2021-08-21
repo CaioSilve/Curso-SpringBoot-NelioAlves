@@ -5,6 +5,7 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -35,6 +37,9 @@ public class Pedido implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "codi_clie")
 	private Usuario clie;
+	
+	@OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
+	private Pagamento pagamento;
 	
 	public Pedido() {
 		// TODO Auto-generated constructor stub
@@ -80,9 +85,19 @@ public class Pedido implements Serializable{
 	public Set<ItemPedido> getItems(){
 		return items;
 	}
+	
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
 
-	
-	
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

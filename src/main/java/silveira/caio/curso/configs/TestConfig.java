@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Profile;
 
 import silveira.caio.curso.entities.Categoria;
 import silveira.caio.curso.entities.ItemPedido;
+import silveira.caio.curso.entities.Pagamento;
 import silveira.caio.curso.entities.Pedido;
 import silveira.caio.curso.entities.Produto;
 import silveira.caio.curso.entities.Usuario;
@@ -83,6 +84,10 @@ public class TestConfig implements CommandLineRunner {
 		
 		itemPediRepo.saveAll(Arrays.asList(ip1,ip2,ip3,ip4));
 		
+		Pagamento pag1 = new Pagamento(Instant.parse("2019-06-20T21:53:07Z"), o1);
+		o1.setPagamento(pag1);
+		
+		pediRepo.save(o1);
 
 		
 	}
