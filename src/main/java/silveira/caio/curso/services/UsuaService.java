@@ -27,4 +27,26 @@ public class UsuaService {
 	public Usuario save(Usuario usua) {
 		return repo.save(usua);
 	}
+	
+	public void delete(Long id) {
+		repo.deleteById(id);
+	}
+	
+	public Usuario update(Long id, Usuario usua) {
+		Usuario ent = repo.getById(id);
+		updateData(ent, usua);
+		return repo.save(ent);
+	}
+
+	private void updateData(Usuario ent, Usuario usua) {
+		ent.setEmail(usua.getEmail());
+		ent.setFone(usua.getFone());
+		ent.setNome(usua.getNome());
+	}
+	
+	
+	
+	
+	
+	
 }
