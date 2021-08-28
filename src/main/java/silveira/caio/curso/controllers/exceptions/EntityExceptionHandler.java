@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import silveira.caio.curso.services.exceptions.DatabaseException;
-import silveira.caio.curso.services.exceptions.EntitieNotFound;
+import silveira.caio.curso.services.exceptions.EntityNotFound;
 
 @ControllerAdvice
-public class EntitieExceptionHandler {
+public class EntityExceptionHandler {
 
-	@ExceptionHandler(EntitieNotFound.class)
-	public ResponseEntity<StandartError> entitieNotFound(EntitieNotFound e, HttpServletRequest request){
+	@ExceptionHandler(EntityNotFound.class)
+	public ResponseEntity<StandartError> entitieNotFound(EntityNotFound e, HttpServletRequest request){
 		String error = "Entidade não encontrada";
 		HttpStatus status = HttpStatus.NOT_FOUND;
 		StandartError err = new StandartError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());

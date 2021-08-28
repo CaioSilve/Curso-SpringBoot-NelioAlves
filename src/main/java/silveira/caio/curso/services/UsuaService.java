@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import silveira.caio.curso.entities.Usuario;
 import silveira.caio.curso.repositories.UsuaRepository;
 import silveira.caio.curso.services.exceptions.DatabaseException;
-import silveira.caio.curso.services.exceptions.EntitieNotFound;
+import silveira.caio.curso.services.exceptions.EntityNotFound;
 
 
 @Service
@@ -25,7 +25,7 @@ public class UsuaService {
 	}
 	
 	public Usuario findById(Long id) {
-		return repo.findById(id).orElseThrow(() -> new EntitieNotFound(id));
+		return repo.findById(id).orElseThrow(() -> new EntityNotFound(id));
 	}
 	
 	public Usuario save(Usuario usua) {
@@ -36,14 +36,14 @@ public class UsuaService {
 		try {
 			repo.deleteById(id);
 		}catch (EmptyResultDataAccessException e) {
-			throw new EntitieNotFound(id);
+			throw new EntityNotFound(id);
 		}catch (DataIntegrityViolationException e) {
 			throw new DatabaseException(e.getMessage());
 		}
 	}
 	
 	public Usuario update(Long id, Usuario usua) {
-		Usuario ent = repo.getById(id);
+		Usuario ent = this.findById(id);
 		updateData(ent, usua);
 		return repo.save(ent);
 	}

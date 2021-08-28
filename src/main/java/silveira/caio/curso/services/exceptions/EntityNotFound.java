@@ -1,11 +1,11 @@
 package silveira.caio.curso.services.exceptions;
 
-public class EntitieNotFound extends RuntimeException {
+public class EntityNotFound extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 	
 	
-	public EntitieNotFound(Object id) {
+	public EntityNotFound(Object id) {
 		super("Entidade não encontrada. ID: " + id);
 	}
 
