@@ -40,7 +40,7 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private ItemPedidoRepository itemPediRepo;
 	
-	//Este é um teste do Gti Repositories do eclipse
+	//Este é um teste do Gti Repositories do eclips
 	
 	
 	@Override
